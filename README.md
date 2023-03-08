@@ -101,24 +101,20 @@ Example5:    2
 
 ### Problems 1: Binary Tree Inorder Traversal
 ```.java
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
+import java.util.*;
+class Node {
+    int val;
+    Node left;
+    Node right;
+    Node(int val, Node left, Node right) {
+      this.val = val;
+      this.left = left;
+      this.right = right;
+    }
+}
+class BSTProblem {
     List list = new ArrayList<Integer>();
-    void getInOrderTraversal(TreeNode node){
+    void getInOrderTraversal(Node node){
         if (node == null) return;
         else {
             inorderTraversal(node.left);
@@ -126,33 +122,43 @@ class Solution {
             inorderTraversal(node.right);
         }
     }
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> inorderTraversal(Node root) {
        getInOrderTraversal(root);
        return list;
+    }
+    public static void main(String[] args) {
+        BSTProblem obj = new BSTProblem();
+        Node root = new Node(10, 
+        new Node(4,
+            new Node(1, null, null),
+            new Node(6, null, null)
+            ),
+        new Node(15, 
+            new Node(13, null, null),
+            new Node(18, null, null)
+            )
+        );
+       System.out.println(obj.inorderTraversal(root)); // [1, 4, 6, 10, 13, 15, 18]
     }
 }
 ```
 
 ### Problems 2: Binary Tree Preorder Traversal
 ```.java
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
+import java.util.*;
+class Node {
+    int val;
+    Node left;
+    Node right;
+    Node(int val, Node left, Node right) {
+      this.val = val;
+      this.left = left;
+      this.right = right;
+    }
+}
+class BSTProblem {
     List list = new ArrayList<Integer>();
-    void traverseInPreOrder(TreeNode node){
+    void traverseInPreOrder(Node node){
         if (node == null) return;
         else {
             list.add(node.val);
@@ -160,33 +166,43 @@ class Solution {
             traverseInPreOrder(node.right);
         }
     }
-    public List<Integer> preOrderTraversal(TreeNode root) {
+    public List<Integer> preOrderTraversal(Node root) {
        traverseInPreOrder(root);
        return list;
+    }
+    public static void main(String[] args) {
+        BSTProblem obj = new BSTProblem();
+        Node root = new Node(10, 
+        new Node(4,
+            new Node(1, null, null),
+            new Node(6, null, null)
+            ),
+        new Node(15, 
+            new Node(13, null, null),
+            new Node(18, null, null)
+            )
+        );
+       System.out.println(obj.preOrderTraversal(root)); // [10, 4, 1, 6, 15, 13, 18]
     }
 }
 ```
 
 ### Problems 3: Binary Tree Postorder Traversal
 ```.java
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
+import java.util.*;
+class Node {
+    int val;
+    Node left;
+    Node right;
+    Node(int val, Node left, Node right) {
+      this.val = val;
+      this.left = left;
+      this.right = right;
+    }
+}
+class BSTProblem {
     List list = new ArrayList<Integer>();
-    void traversePostOrder(TreeNode node) {
+    void traversePostOrder(Node node) {
         if (node == null) return;
         else {
             traversePostOrder(node.left);
@@ -194,34 +210,42 @@ class Solution {
             list.add(node.val);
         }
     }
-    public List<Integer> postorderTraversal(TreeNode root) {
+    public List<Integer> postorderTraversal(Node root) {
         traversePostOrder(root);
         return list;
+    }
+    public static void main(String[] args) {
+        BSTProblem obj = new BSTProblem();
+        Node root = new Node(10, 
+        new Node(4,
+            new Node(1, null, null),
+            new Node(6, null, null)
+            ),
+        new Node(15, 
+            new Node(13, null, null),
+            new Node(18, null, null)
+            )
+        );
+       System.out.println(obj.postorderTraversal(root)); // [1, 6, 4, 13, 18, 15, 10]
     }
 }
 ```
 ### Problems 4: How to validate a binary tree whether binary search tree or not
 ```.java
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
-
+import java.util.*;
+class Node {
+    int val;
+    Node left;
+    Node right;
+    Node(int val, Node left, Node right) {
+      this.val = val;
+      this.left = left;
+      this.right = right;
+    }
+}
+class BSTProblem {
     List<Integer> list = new ArrayList<>();
-
-    void traverseInOrder(TreeNode node){
+    void traverseInOrder(Node node){
         if (node == null) return;
         else {
             traverseInOrder(node.left);
@@ -230,7 +254,7 @@ class Solution {
         }
     }
 
-    public boolean isValidBST(TreeNode root) {
+    public boolean isValid(Node root) {
         traverseInOrder(root);
         for(int i = 1; i<list.size(); i++) {
             int currVal = list.get(i);
@@ -241,29 +265,39 @@ class Solution {
         }
         return true;
     }
+    public static void main(String[] args) {
+        BSTProblem obj = new BSTProblem();
+        Node root = new Node(10, 
+        new Node(4,
+            new Node(1, null, null),
+            new Node(6, null, null)
+            ),
+        new Node(15, 
+            new Node(13, null, null),
+            new Node(18, null, null)
+            )
+        );
+       System.out.println(obj.isValid(root)); // true
+    }
 }
 ```
 
 ### Problems 5: Kth smallest element in a Binary Search Tree
 ```.java
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
+import java.util.*;
+class Node {
+    int val;
+    Node left;
+    Node right;
+    Node(int val, Node left, Node right) {
+      this.val = val;
+      this.left = left;
+      this.right = right;
+    }
+}
+class BSTProblem {
     List<Integer> list = new ArrayList<>();
-    void traverseInOrder(TreeNode node) {
+    void traverseInOrder(Node node) {
         if (node == null) return;
         else {
             traverseInOrder(node.left);
@@ -271,33 +305,43 @@ class Solution {
             traverseInOrder(node.right);
         }
     }
-    public int kthSmallest(TreeNode root, int k) {
+    public int kthSmallest(Node root, int k) {
         traverseInOrder(root);
         return list.get(k-1);
+    }
+    public static void main(String[] args) {
+        BSTProblem obj = new BSTProblem();
+        Node root1 = new Node(10, 
+        new Node(4,
+            new Node(1, null, null),
+            new Node(6, null, null)
+            ),
+        new Node(15, 
+            new Node(13, null, null),
+            new Node(18, null, null)
+            )
+        );
+       System.out.println(obj.kthSmallest(root1, 2)); // 4
     }
 }
 ```
 
 ### Problems 6: Minimum Distance Between BST Nodes
 ```.java
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
+import java.util.*;
+class Node {
+    int val;
+    Node left;
+    Node right;
+    Node(int val, Node left, Node right) {
+      this.val = val;
+      this.left = left;
+      this.right = right;
+    }
+}
+class BSTProblem {
     List<Integer> list = new ArrayList<>();
-    void traverseInOrder(TreeNode node) {
+    void traverseInOrder(Node node) {
         if (node == null) return;
         else {
             traverseInOrder(node.left);
@@ -305,8 +349,9 @@ class Solution {
             traverseInOrder(node.right);
         }
     }
-    public int minDiffInBST(TreeNode root) {
+    int getMinDiff(Node root) {
         traverseInOrder(root);
+        // System.out.println("list:"+list+"\n");
         int min = Integer.MAX_VALUE;
         for(int i = 1; i<list.size(); i++) {
             int diff = list.get(i) - list.get(i-1);
@@ -315,6 +360,20 @@ class Solution {
             }
         }
         return min;
+    }
+    public static void main(String[] args) {
+        BSTProblem obj = new BSTProblem();
+        Node root1 = new Node(10, 
+        new Node(4,
+            new Node(1, null, null),
+            new Node(6, null, null)
+            ),
+        new Node(15, 
+            new Node(13, null, null),
+            new Node(18, null, null)
+            )
+        );
+       System.out.println(obj.getMinDiff(root1)); //
     }
 }
 ```
