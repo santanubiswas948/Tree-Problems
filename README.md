@@ -318,3 +318,56 @@ class Solution {
     }
 }
 ```
+
+### Problems 7: Check whether a tree Symmetric or not
+```.java
+class Node {
+    int val;
+    Node left;
+    Node right;
+    Node(int val, Node left, Node right) {
+      this.val = val;
+      this.left = left;
+      this.right = right;
+    }
+}
+class Symmetric {
+    boolean check(Node lNode, Node rNode){
+         if (lNode == null && rNode == null) return true;
+         else if(lNode != null && rNode != null) {
+            return lNode.val == rNode.val && check(lNode.left, rNode.right) && check(lNode.right, rNode.left);
+         }
+         return false;
+    }
+    boolean isSymmetric(Node root){
+      if (root == null) return true;
+      return check(root.left, root.right);
+    }
+    public static void main(String[] args) {
+        Symmetric obj = new Symmetric();
+        Node root1 = new Node(2, 
+        new Node(4,
+            new Node(3, null, null),
+            new Node(5, null, null)
+            ),
+        new Node(4, 
+            new Node(5, null, null),
+            new Node(3, null, null)
+            )
+        );
+        
+        Node root2 = new Node(2, 
+        new Node(4,
+            new Node(3, null, null),
+            new Node(5, null, null)
+            ),
+        new Node(4, 
+            null,
+            null
+            )
+        );
+       System.out.println(obj.isSymmetric(root1)); // true
+       System.out.println(obj.isSymmetric(root2)); // false
+    }
+}
+```
