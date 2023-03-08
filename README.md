@@ -99,7 +99,7 @@ Example5:    2
    c) In-Order (Left -> root -> Right)
 ```
 
-## Problems1: Binary Tree Inorder Traversal
+### Problems 1: Binary Tree Inorder Traversal
 ```.java
 /**
  * Definition for a binary tree node.
@@ -133,7 +133,7 @@ class Solution {
 }
 ```
 
-## Problems2: Binary Tree Preorder Traversal
+### Problems 2: Binary Tree Preorder Traversal
 ```.java
 /**
  * Definition for a binary tree node.
@@ -167,7 +167,7 @@ class Solution {
 }
 ```
 
-## Problems3: Binary Tree Postorder Traversal
+### Problems 3: Binary Tree Postorder Traversal
 ```.java
 /**
  * Definition for a binary tree node.
@@ -200,7 +200,7 @@ class Solution {
     }
 }
 ```
-## Problems4: How to validate a binary tree whether binary search tree or not
+### Problems 4: How to validate a binary tree whether binary search tree or not
 ```.java
 /**
  * Definition for a binary tree node.
@@ -244,7 +244,7 @@ class Solution {
 }
 ```
 
-## Problems5: Kth smallest element in a Binary Search Tree
+### Problems 5: Kth smallest element in a Binary Search Tree
 ```.java
 /**
  * Definition for a binary tree node.
@@ -274,6 +274,47 @@ class Solution {
     public int kthSmallest(TreeNode root, int k) {
         traverseInOrder(root);
         return list.get(k-1);
+    }
+}
+```
+
+### Problems 6: Minimum Distance Between BST Nodes
+```.java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    List<Integer> list = new ArrayList<>();
+    void traverseInOrder(TreeNode node) {
+        if (node == null) return;
+        else {
+            traverseInOrder(node.left);
+            list.add(node.val);
+            traverseInOrder(node.right);
+        }
+    }
+    public int minDiffInBST(TreeNode root) {
+        traverseInOrder(root);
+        int min = Integer.MAX_VALUE;
+        for(int i = 1; i<list.size(); i++) {
+            int diff = list.get(i) - list.get(i-1);
+            if (diff < min) {
+                min = diff;
+            }
+        }
+        return min;
     }
 }
 ```
