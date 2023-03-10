@@ -430,3 +430,41 @@ class Symmetric {
     }
 }
 ```
+### Problems 8: Count Good Nodes in Binary tree (a node P in the tree is named good if in the path from root to P there are no nodes with a value greater than P)
+```.java
+class Node {
+    int val;
+    Node left;
+    Node right;
+    Node(int val, Node left, Node right) {
+      this.val = val;
+      this.left = left;
+      this.right = right;
+    }
+}
+class FindGoodNodes {
+    static int totalGoodNodes = 0;
+    void getGoodNodes(Node node, int maxInPath){
+      if (node == null) return ;
+      totalGoodNodes += node.val >= maxInPath ? 1 : 0;
+      int max = Math.max(maxInPath, node.val);
+      getGoodNodes(node.left, max);
+      getGoodNodes(node.right, max);
+    }
+    public static void main(String[] args) {
+        FindGoodNodes obj = new FindGoodNodes();
+        Node root1 = new Node(2, 
+        new Node(4,
+            new Node(3, null, null),
+            new Node(5, null, null)
+            ),
+        new Node(4, 
+            new Node(5, null, null),
+            new Node(3, null, null)
+            )
+        );
+        obj.getGoodNodes(root1, Integer.MIN_VALUE);
+       System.out.println(totalGoodNodes); // 5
+    }
+}
+```
