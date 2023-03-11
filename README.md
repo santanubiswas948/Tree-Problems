@@ -571,3 +571,55 @@ class BalanceBST {
     }
 }
 ```
+### Problems 11: Convert Sorted List to Binary Search Tree
+```
+Given the head of a singly linked list where elements are sorted in ascending order, convert it to a height-balanced binary search tree.
+```
+```.java
+import java.util.*;
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+    Node(int val, Node left, Node right) {
+      this.val = val;
+      this.left = left;
+      this.right = right;
+    }
+}
+class Linkedlist {
+  int val;
+  Linkedlist next;
+  Linkedlist(int val, Linkedlist next) {
+     this.val = val;
+     this.next = next;
+  }
+}
+class BalanceBST {
+    List<Integer> sortedList = new ArrayList<>();
+    Node constructBST(int start, int end){
+        if (start > end) return null;
+        int mid = (start + end) / 2 ;
+        Node node = new Node(
+         sortedList.get(mid),
+         constructBST(start, mid - 1),
+         constructBST(mid + 1, end)
+        );
+        return node;
+    }
+    void getSortedList(Linkedlist node) {
+        while(node != null) {
+            sortedList.add(node.val);
+            node = node.next;
+        }
+    }
+    public static void main(String[] args) {
+        BalanceBST obj = new BalanceBST();
+        Linkedlist root = new Linkedlist(1, new Linkedlist(2, new Linkedlist(3, new Linkedlist(4, null))));
+        obj.getSortedList(root);
+        
+       System.out.println(obj.constructBST(0, obj.sortedList.size() - 1)); // balanced BST
+    }
+}
+```
