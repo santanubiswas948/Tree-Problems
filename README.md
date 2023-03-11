@@ -519,3 +519,55 @@ class EvaluateBT {
     }
 }
 ```
+### Problems 10: Balance a Binary Search Tree
+```
+Given the root of a binary search tree, return a balanced binary search tree with the same node values. If there is more than one answer, return any of them.
+
+A binary search tree is balanced if the depth of the two subtrees of every node never differs by more than 1.
+```
+```.java
+import java.util.*;
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+    Node(int val, Node left, Node right) {
+      this.val = val;
+      this.left = left;
+      this.right = right;
+    }
+}
+class BalanceBST {
+    List<Integer> inOrderData = new ArrayList<>();
+    void inOrderTraversal(Node node){
+        if (node == null) return;
+        inOrderTraversal(node.left);
+        inOrderData.add(node.val);
+        inOrderTraversal(node.right);
+    }
+    Node constructBST(int start, int end) {
+        if (start > end) return null;
+        int mid = (start + end)/2;
+
+        Node node = new Node(inOrderData.get(mid), constructBST(start, mid-1), constructBST(mid + 1, end));
+        return node;
+    }
+    public static void main(String[] args) {
+        BalanceBST obj = new BalanceBST();
+        Node root1 = new Node(4, 
+        new Node(2,
+            new Node(1, null, null),
+            new Node(3, null, null)
+            ),
+        new Node(7, 
+            new Node(5, null, null),
+            new Node(6, null, null)
+            )
+        );
+        obj.inOrderTraversal(root1);
+        
+       System.out.println(obj.constructBST(0, obj.inOrderData.size() - 1)); // balanced BST
+    }
+}
+```
