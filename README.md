@@ -623,3 +623,51 @@ class BalanceBST {
     }
 }
 ```
+### Problems 12: Maximum Binary Tree
+```
+You are given an integer array nums with no duplicates. A maximum binary tree can be built recursively from nums using the following algorithm:
+
+Create a root node whose value is the maximum value in nums.
+Recursively build the left subtree on the subarray prefix to the left of the maximum value.
+Recursively build the right subtree on the subarray suffix to the right of the maximum value.
+Return the maximum binary tree built from nums.
+```
+```.java
+class Node {
+    int val;
+    Node left;
+    Node right;
+    Node(int val, Node left, Node right) {
+      this.val = val;
+      this.left = left;
+      this.right = right;
+    }
+}
+class BT {
+    Node constructBT(int s, int e, int[] nums){
+        if (s > e) return null;
+        int max = Integer.MIN_VALUE;
+        int maxIndex = -1;
+        for(int i = s; i<=e; i++) {
+            if (nums[i] > max) {
+                max = nums[i];
+                maxIndex = i;
+            }
+        }
+        return new Node(max,
+         constructBT(s, maxIndex - 1, nums),
+         constructBT(maxIndex + 1, e, nums)
+        );
+
+    }
+    
+    Node constructMaximumBinaryTree(int[] nums) {
+        return constructBT(0, nums.length - 1, nums);
+    }
+    public static void main(String[] args) {
+            BT bt = new BT();
+            Node ans = bt.constructMaximumBinaryTree(new int[]{3,2,1,6,0,5});
+            System.out.println(ans);
+    }
+}
+```
