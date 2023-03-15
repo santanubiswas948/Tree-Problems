@@ -670,4 +670,86 @@ class BT {
             System.out.println(ans);
     }
 }
+
+```
+### Problems 14: Sum Root to Leaf Numbers
+```
+You are given the root of a binary tree containing digits from 0 to 9 only.
+
+Each root-to-leaf path in the tree represents a number.
+
+For example, the root-to-leaf path 1 -> 2 -> 3 represents the number 123.
+Return the total sum of all root-to-leaf numbers. Test cases are generated so that the answer will fit in a 32-bit integer.
+
+A leaf node is a node with no children.
+```
+```.java
+class Node {
+    int val;
+    Node left;
+    Node right;
+    Node(int val, Node left, Node right) {
+      this.val = val;
+      this.left = left;
+      this.right = right;
+    }
+}
+class SumToLeafNodes {
+    int sum = 0;
+    void getSum(Node node, int val) {
+        if (node == null) {
+            sum += val;
+            return;
+        }
+        else {
+            if (node.left != null ) getSum(node.left, val*10 + node.val);
+            if (node.right != null) getSum(node.right, val*10 + node.val);
+            if (node.left == null && node.right == null) {
+                getSum(null,  val*10 + node.val);
+            }
+        }
+    }
+    public int sumNumbers(TreeNode root) {
+        getSum(root, 0);
+        return sum;
+    }
+
+}
+```
+
+### Problems 15: Check Completeness of a Binary Tree
+```
+Given the root of a binary tree, determine if it is a complete binary tree.
+
+In a complete binary tree, every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.
+```
+```.java
+class Node {
+    int val;
+    Node left;
+    Node right;
+    Node(int val, Node left, Node right) {
+      this.val = val;
+      this.left = left;
+      this.right = right;
+    }
+}
+class Solution {
+    public boolean isCompleteTree(Node root) {
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        boolean flag = false;
+        while(!q.isEmpty()) {
+            TreeNode p = q.poll();
+            if (p == null) {
+                flag = true;
+            } else {
+                if (flag) return false;
+                q.offer(p.left);
+                q.offer(p.right);
+            }
+        }
+        return true;
+    }
+}
 ```
